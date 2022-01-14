@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="">
+  <title>mysql | 行初雾</title>
+  <meta name="author" content="行初雾" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="" />
+  
+  <meta name="description" content="初始Mysqlhttps:&#x2F;&#x2F;www.kuangstudy.com&#x2F;bbs&#x2F;1467760102697095170#header2 什么是数据库概念：​    数据仓库（软件），安装在操作系统（window，Linux，mac…）之上。可以存储大量数据。500万 作用：​    数据库是存储数据，管理数据， 为什么学习数据库 趋势，岗位需求 大数据时代，得数据者得天下 被迫需求：存数据 数据库是所">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql">
+<meta property="og:url" content="https://xingchuwu.github.io/2022/01/14/mysql/index.html">
+<meta property="og:site_name" content="行初雾">
+<meta property="og:description" content="初始Mysqlhttps:&#x2F;&#x2F;www.kuangstudy.com&#x2F;bbs&#x2F;1467760102697095170#header2 什么是数据库概念：​    数据仓库（软件），安装在操作系统（window，Linux，mac…）之上。可以存储大量数据。500万 作用：​    数据库是存储数据，管理数据， 为什么学习数据库 趋势，岗位需求 大数据时代，得数据者得天下 被迫需求：存数据 数据库是所">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xingchuwu.github.io/null">
+<meta property="article:published_time" content="2022-01-14T11:38:12.454Z">
+<meta property="article:modified_time" content="2022-01-14T11:43:26.306Z">
+<meta property="article:author" content="行初雾">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xingchuwu.github.io/null">
+<meta name="twitter:site" content="@null">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" type="text/css" media="all">
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" type="text/css" media="all">
+  
+  
+  <link rel="stylesheet" id="fontawe-css" href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="nprogress-css" href="https://unpkg.com/nprogress@0.2.0/nprogress.css" type="text/css" media="all">
+  
+  
+    <link rel="stylesheet" href="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.css">
+  
+  
+    <link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-dark.min.css" type="text/css" media="all">
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="https://unpkg.com/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="https://unpkg.com/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.webp');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                        <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                    
+                                
+                                    
+                                        <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                    
+                                
+                                    
+                                        <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
+                                    
+                                
+                                    
+                                        <li>
+                                            <a><i class="fa fa-link"></i>链接</a>
+                                            <ul class="sub-menu">
+                                                
+                                                    
+                                                
+                                                    
+                                                        <li><a target="_blank" rel="noopener" href="https://candinya.com">作者博客</a></li>
+                                                    
+                                                
+                                                    
+                                                        <li><a target="_blank" rel="noopener" href="https://github.com/Candinya/Kratos-Rebirth">项目链接</a></li>
+                                                    
+                                                
+                                            </ul>
+                                        </li>
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">行初雾</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>行初雾</h2> <br />
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article>
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center">mysql</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><i class="fa fa-calendar"></i> 2022-01-14</li>
+                <li><i class="fa fa-user"></i> 作者 行初雾</li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~8.44K
+                    
+                    字
+                </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                本文最后编辑于 <time datetime="1642160606306"></time> 前，其中的内容可能需要更新。
+            </div>
+            
+            <hr />
+            <h1 id="初始Mysql"><a href="#初始Mysql" class="headerlink" title="初始Mysql"></a>初始Mysql</h1><p><a target="_blank" rel="noopener" href="https://www.kuangstudy.com/bbs/1467760102697095170#header2">https://www.kuangstudy.com/bbs/1467760102697095170#header2</a></p>
+<h2 id="什么是数据库"><a href="#什么是数据库" class="headerlink" title="什么是数据库"></a>什么是数据库</h2><h4 id="概念："><a href="#概念：" class="headerlink" title="概念："></a>概念：</h4><p>​    数据仓库（软件），安装在操作系统（window，Linux，mac…）之上。可以存储大量数据。500万</p>
+<h4 id="作用："><a href="#作用：" class="headerlink" title="作用："></a>作用：</h4><p>​    数据库是存储数据，管理数据，</p>
+<h2 id="为什么学习数据库"><a href="#为什么学习数据库" class="headerlink" title="为什么学习数据库"></a>为什么学习数据库</h2><ul>
+<li>趋势，岗位需求</li>
+<li>大数据时代，得数据者得天下</li>
+<li>被迫需求：存数据</li>
+<li>数据库是所有软件体系中最核心得存在</li>
+</ul>
+<h2 id="数据库分类"><a href="#数据库分类" class="headerlink" title="数据库分类"></a>数据库分类</h2><p>关系型数据库：（SQL）</p>
+<ul>
+<li>MySQL、Oracle、SQL server、DB2、SQLlite…</li>
+<li>通过表与表之间、行与行之间的关系进行数据的存储。</li>
+</ul>
+<p>非关系型数据库：(NoSQL)Not Only SQL</p>
+<ul>
+<li>redis、MongDB</li>
+<li>对象存储，通过对象自身的属性来决定。</li>
+</ul>
+<h2 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h2><p>命令行连接：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">mysql <span class="comment">--uroot -p123456 -- 连接数据库</span></span><br><span class="line"></span><br><span class="line">update mysql.user <span class="keyword">set</span> authentication_string<span class="operator">=</span>password(<span class="string">&#x27;123456&#x27;</span>) <span class="keyword">where</span> <span class="keyword">user</span><span class="operator">=</span><span class="string">&#x27;root&#x27;</span> <span class="keyword">and</span> Host <span class="operator">=</span> <span class="string">&#x27;localhost&#x27;</span>; <span class="comment">-- 修改用户密码</span></span><br><span class="line">flush privileges; <span class="comment">-- 刷新权限</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-------------------------------</span></span><br><span class="line"><span class="comment">-- 所有的命令都使用;结尾</span></span><br><span class="line"><span class="keyword">show</span> databases;    <span class="comment">-- 查看所有的数据库</span></span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> use school    <span class="comment">-- 切换数据库 use 数据库名</span></span><br><span class="line">Database changed</span><br><span class="line"></span><br><span class="line"><span class="keyword">show</span> tables;    <span class="comment">-- 查看数据库中所有的表</span></span><br><span class="line"><span class="keyword">describe</span> student;    <span class="comment">-- 显示数据库中所有的表的信息</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> database westos;    <span class="comment">-- 创建一个数据库</span></span><br><span class="line"></span><br><span class="line">exit;    <span class="comment">-- 退出连接</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 单行注释（SQL 的本来的注释）</span></span><br><span class="line"><span class="comment">/*    (sql的多行注释)</span></span><br><span class="line"><span class="comment">hello</span></span><br><span class="line"><span class="comment">hhhh</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="数据库XXX语言"><a href="#数据库XXX语言" class="headerlink" title="数据库XXX语言"></a>数据库XXX语言</h2><p>DDL    定义</p>
+<p>DML    操作</p>
+<p>DQL    查询</p>
+<p>DCL    控制</p>
+<h1 id="MySQL属性和操作"><a href="#MySQL属性和操作" class="headerlink" title="MySQL属性和操作"></a>MySQL属性和操作</h1><h2 id="1-常用密令"><a href="#1-常用密令" class="headerlink" title="1.常用密令"></a>1.常用密令</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">show create database user; --查看创建数据库user的语句</span><br><span class="line">show create table user; --查看创建数据表user的语句</span><br><span class="line">desc user; --查看数据表user的结构</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>mysql的关键字不区分字母的大小写</p>
+</blockquote>
+<h2 id="2-操作数据库。数据库名：demo"><a href="#2-操作数据库。数据库名：demo" class="headerlink" title="2.操作数据库。数据库名：demo"></a>2.操作数据库。数据库名：demo</h2><ul>
+<li><p>创建数据库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create database [if not exists] demo;</span><br></pre></td></tr></table></figure></li>
+<li><p>删除数据库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop database [if exists] demo;</span><br></pre></td></tr></table></figure></li>
+<li><p>使用数据库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use `demo`; --tab键上面，如果表名或者字段名是一个特殊字符，就需要使用``</span><br></pre></td></tr></table></figure></li>
+<li><p>查看数据库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show databases; --查看所有数据库</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="3-数据库列的类型"><a href="#3-数据库列的类型" class="headerlink" title="3.数据库列的类型"></a>3.数据库列的类型</h2><blockquote>
+<p>mysql数据类型长度问题总结：<a target="_blank" rel="noopener" href="https://blog.csdn.net/yaruli/article/details/79187814">https://blog.csdn.net/yaruli/article/details/79187814</a></p>
+</blockquote>
+<ol>
+<li>数值<ul>
+<li>tinyint：十分小的数据，1个字节。</li>
+<li>smallint：较小的数据，2个字节。</li>
+<li>mediumint：中等大小的数据，3个字节。</li>
+<li><h4 id="int：标准的证书，4个字节。（常用的变量）"><a href="#int：标准的证书，4个字节。（常用的变量）" class="headerlink" title="int：标准的证书，4个字节。（常用的变量）"></a>int：标准的证书，4个字节。（常用的变量）</h4></li>
+<li>bigint：较大的数据，8个字节。</li>
+<li>float：浮点数，4个字节。</li>
+<li>double：浮点数，8个字节。</li>
+<li>decimal：字符串形式的浮点数。涉及到金钱计算时，一般使用decimal</li>
+</ul>
+</li>
+<li>字符串<ul>
+<li>char：字符串固定大小的，0~255字节。</li>
+<li><h5 id="varchar：可变字符串，0-65535字节。（常用的变量）"><a href="#varchar：可变字符串，0-65535字节。（常用的变量）" class="headerlink" title="varchar：可变字符串，0~65535字节。（常用的变量）"></a>varchar：可变字符串，0~65535字节。（常用的变量）</h5></li>
+<li>tinytext：微型文本，2^8-1字节。</li>
+<li><h5 id="text：文本串，2-16-1字节。"><a href="#text：文本串，2-16-1字节。" class="headerlink" title="text：文本串，2^16-1字节。"></a>text：文本串，2^16-1字节。</h5></li>
+</ul>
+</li>
+<li>时间<ul>
+<li>date：YYYY-MM-DD，日期格式。</li>
+<li>time：HH：mm：ss，时间格式。</li>
+<li><h5 id="datatime：YYYY-MM-DD-HH：mm：ss，最常用的时间格式。"><a href="#datatime：YYYY-MM-DD-HH：mm：ss，最常用的时间格式。" class="headerlink" title="datatime：YYYY-MM-DD HH：mm：ss，最常用的时间格式。"></a>datatime：YYYY-MM-DD HH：mm：ss，最常用的时间格式。</h5></li>
+<li><h5 id="timestamp：时间戳，1970-1-1道现在的毫秒数。"><a href="#timestamp：时间戳，1970-1-1道现在的毫秒数。" class="headerlink" title="timestamp：时间戳，1970.1.1道现在的毫秒数。"></a>timestamp：时间戳，1970.1.1道现在的毫秒数。</h5></li>
+<li>year：年份表示。</li>
+</ul>
+</li>
+<li>null<ul>
+<li>没有值，未知。</li>
+<li>注意：不要使用NULL进行运算，没有意义，计算结果为NULL</li>
+</ul>
+</li>
+</ol>
+<h2 id="4-数据库的字段属性"><a href="#4-数据库的字段属性" class="headerlink" title="4.数据库的字段属性"></a>4.数据库的字段属性</h2><ol>
+<li>Unsigned<ul>
+<li>无符号的整数。</li>
+<li>声明了该列不能为负数。</li>
+</ul>
+</li>
+<li>zerofill<ul>
+<li>0填充</li>
+<li>不足的位数使用0填充。int(5)类型存储数字9会变成00009</li>
+</ul>
+</li>
+<li>自增<ul>
+<li>通常理解为自增，自动在上一条记录的基础上+1（默认）。</li>
+<li>通常用来设计唯一的主键，必须是整数类型。</li>
+<li>可以自定义设计主键自增的起始值和步长。</li>
+</ul>
+</li>
+<li>非空<ul>
+<li>勾选上not null，如果不给字段赋值，则会报错。</li>
+</ul>
+</li>
+<li>默认<ul>
+<li>设置默认的值。</li>
+<li>sex，默认值为男，如果不指定该列的值，则会有默认的值。</li>
+</ul>
+</li>
+</ol>
+<p>拓展：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*    每一个表，都必须存在一下五个字段！未来做项目用的，表示一个记录存在意义！</span></span><br><span class="line"><span class="comment">id    主键</span></span><br><span class="line"><span class="comment">`version`    乐观锁</span></span><br><span class="line"><span class="comment">is_delete    伪删除</span></span><br><span class="line"><span class="comment">gmt_create    创建时间</span></span><br><span class="line"><span class="comment">gmt_update    修改时间</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="5-创建数据库"><a href="#5-创建数据库" class="headerlink" title="5.创建数据库"></a>5.创建数据库</h2><ul>
+<li><p>注意点，使用英文()，表的名称和字段尽量使用``括起来。</p>
+</li>
+<li><p>AUTO_INCREMENT 自增。</p>
+</li>
+<li><p>字符串使用单引号括起来。</p>
+</li>
+<li><p>所有的语句后面加，（英文的），最后一个不用加。</p>
+</li>
+<li><p>PRIMARY KEY主键，一般一个表只有一个唯一的主键。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 目标：创建一个school数据库</span></span><br><span class="line"><span class="comment">-- 创建学生表（列，字段） 使用SQL创建</span></span><br><span class="line"><span class="comment">-- 学号int 登录密码varchar(20) 姓名，性别varchar(2) 出生日期（datatime） 家庭地址，email</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> `student`(</span><br><span class="line">    `id` <span class="type">INT</span>(<span class="number">4</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT COMMENT <span class="string">&#x27;学号&#x27;</span>,</span><br><span class="line">    `name` <span class="type">VARCHAR</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;匿名&#x27;</span> COMMENT <span class="string">&#x27;姓名&#x27;</span>,</span><br><span class="line">    `pwd` <span class="type">VARCHAR</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;123456&#x27;</span> COMMENT <span class="string">&#x27;密码&#x27;</span>,</span><br><span class="line">    `sex` <span class="type">VARCHAR</span>(<span class="number">2</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;男&#x27;</span> COMMENT <span class="string">&#x27;性别&#x27;</span>,</span><br><span class="line">    `birthday` DATETIME <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;生日&#x27;</span>,</span><br><span class="line">    `address` <span class="type">VARCHAR</span>(<span class="number">20</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;地址&#x27;</span>,</span><br><span class="line">    `email` <span class="type">VARCHAR</span>(<span class="number">20</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;邮箱&#x27;</span>,</span><br><span class="line">    <span class="keyword">PRIMARY</span> KEY(`id`) </span><br><span class="line">)ENGINE<span class="operator">=</span>INNODB <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span>utf8</span><br></pre></td></tr></table></figure></li>
+<li><p>格式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE [IF NOT EXISTS] 表名（</span><br><span class="line">    &#x27;字段名&#x27; 列类型[属性][索引][注释]，</span><br><span class="line">    &#x27;字段名&#x27; 列类型[属性][索引][注释]，</span><br><span class="line">    ......</span><br><span class="line">    &#x27;字段名&#x27;列类型[属性][索引][注释]</span><br><span class="line">）[表类型][字符集设置][注释]</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="6-数据表类型"><a href="#6-数据表类型" class="headerlink" title="6.数据表类型"></a>6.数据表类型</h2><ol>
+<li>关于数据库引擎<ul>
+<li>InnoDB：5.5版本以后默认使用。</li>
+<li>MyISam：早些年使用的默认。</li>
+</ul>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>MyISam</th>
+<th>InnoDB</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>事务支持</td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>数据行锁定</td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>外键约束</td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>全文索引</td>
+<td>支持</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>表空间大小</td>
+<td>较小</td>
+<td>较大，约为myisam两倍</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">常规使用操作：</span><br><span class="line">- MYISAM节约空间，速度较快。 </span><br><span class="line">- INNODB安全性高，事务的处理，多表多用户操作。</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>在物理空间存在的位置<br>所有的数据库文件都存在data目录下，一个文件夹就对应一个数据库，本质还是文件的存储。</li>
+<li>MySQL引擎在物理文件上的区别。<ul>
+<li>InnoDB在数据库表中只有一个*.frm文件，以及上级目录下的ibdata1文件。</li>
+<li>MYISAM对应文件：<ul>
+<li>*.frm：表结构的定义文件</li>
+<li>*.MYD：数据文件（data）</li>
+<li>*.MYI：索引文件（index）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="7-设置数据库表的字符集编码"><a href="#7-设置数据库表的字符集编码" class="headerlink" title="7.设置数据库表的字符集编码"></a>7.设置数据库表的字符集编码</h2><blockquote>
+<p>MySQL默认字符编码的设置：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/ec0c86ee3e04">https://www.jianshu.com/p/ec0c86ee3e04</a></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">charset=utf8</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>不设置的话，会是mysql默认的字符集编码（不支持中文）</li>
+<li>MySQL的默认编码是Latin1，不支持中文。</li>
+<li>在my.ini中配置默认的编码</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">character-set-server=utf8</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-修改数据表字段"><a href="#8-修改数据表字段" class="headerlink" title="8.修改数据表字段"></a>8.修改数据表字段</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">-- 修改表名：ALTER TABLE 旧表名 RENAME AS 新表名</span><br><span class="line">ALTER TABLE teacher RENAME AS teacher1</span><br><span class="line">-- 增加表的字段：ALTER TABLE 表名 ADD 字段名 列属性</span><br><span class="line">ALTER TABLE teacher1 ADD age INT(11)</span><br><span class="line"></span><br><span class="line">-- 修改表的字段（重命名，修改约束）</span><br><span class="line">-- ALTER TABLE 表名 MODIFY 字段名 列属性[]</span><br><span class="line">ALTER TABLE teacher1 MODIFY age VARCHAR(11)    -- 修改约束</span><br><span class="line">-- ALTER TABLE 表名 CHANGE 旧名字 新名字 列属性[]</span><br><span class="line">ALTER TABLE teacher1 CHANGE age age1 INT(1)    -- 字段重命名</span><br><span class="line"></span><br><span class="line">-- 删除表的字段：ALTER TABLE 表名 DROP 字段名</span><br><span class="line">ALTER TABLE teacher1 DROP age1</span><br></pre></td></tr></table></figure>
+
+<p>*<strong>change一般用来字段重命名，modify不用来字段重命名，只能修改字段类型和约束*</strong></p>
+<h2 id="9-删除数据表字段"><a href="#9-删除数据表字段" class="headerlink" title="9.删除数据表字段"></a>9.删除数据表字段</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- 删除表（如果表存在再删除）</span><br><span class="line">drop table if exists `teacher1`</span><br></pre></td></tr></table></figure>
+
+<h1 id="MySQL数据管理"><a href="#MySQL数据管理" class="headerlink" title="MySQL数据管理"></a>MySQL数据管理</h1><h2 id="外键（了解即可）"><a href="#外键（了解即可）" class="headerlink" title="外键（了解即可）"></a>外键（了解即可）</h2><p>方式一：在创建表的时候，增加约束（麻烦，比较复杂）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">-- 学生表的gradeid字段，要去引用年级表的gradeid</span><br><span class="line">-- 定义外键key</span><br><span class="line">-- 给这个外键添加约束（执行引用） references 引用</span><br><span class="line"></span><br><span class="line">CREATE TABLE `grade`(</span><br><span class="line">    `gradeid` INT(10) NOT NULL AUTO_INCREMENT COMMENT &#x27;年级id&#x27;,</span><br><span class="line">    `gradename` VARCHAR(50) NOT NULL COMMENT &#x27;年级名称&#x27;,</span><br><span class="line">    PRIMARY KEY(`gradeid`)</span><br><span class="line">)ENGINE=INNODB DEFAULT CHARSET=utf8</span><br><span class="line"></span><br><span class="line">CREATE TABLE IF NOT EXISTS `student`(</span><br><span class="line">    `id` INT(4) NOT NULL AUTO_INCREMENT COMMENT &#x27;学号&#x27;,</span><br><span class="line">    `name` VARCHAR(20) NOT NULL DEFAULT &#x27;匿名&#x27; COMMENT &#x27;姓名&#x27;,</span><br><span class="line">    `pwd` VARCHAR(20) NOT NULL DEFAULT &#x27;123456&#x27; COMMENT &#x27;密码&#x27;,</span><br><span class="line">    `sex` VARCHAR(2) NOT NULL DEFAULT &#x27;男&#x27; COMMENT &#x27;性别&#x27;,</span><br><span class="line">    `gradeid` INT(10) NOT NULL COMMENT &#x27;年级&#x27;,</span><br><span class="line">    `birthday` DATETIME DEFAULT NULL COMMENT &#x27;生日&#x27;,</span><br><span class="line">    `address` VARCHAR(20) DEFAULT NULL COMMENT &#x27;地址&#x27;,</span><br><span class="line">    `email` VARCHAR(20) DEFAULT NULL COMMENT &#x27;邮箱&#x27;,</span><br><span class="line">    PRIMARY KEY(`id`),</span><br><span class="line">    KEY `FK_gradeid`(`gradeid`),</span><br><span class="line">    CONSTRAINT `FK_gradeid` FOREIGN KEY (`gradeid`) REFERENCES `grade`(`gradeid`)</span><br><span class="line">    </span><br><span class="line">)ENGINE=INNODB DEFAULT CHARSET=utf8</span><br></pre></td></tr></table></figure>
+
+<p>删除有外键关系的表的时候，必须要先删除引用别人的表（从表），再删除被引用的表（主表）</p>
+<p>方式二：创建表成功后，添加外键约束</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">-- 学生表的gradeid字段，要去引用年级表的gradeid</span><br><span class="line">-- 定义外键key</span><br><span class="line">-- 给这个外键添加约束（执行引用） references 引用</span><br><span class="line"></span><br><span class="line">CREATE TABLE `grade`(</span><br><span class="line">    `gradeid` INT(10) NOT NULL AUTO_INCREMENT COMMENT &#x27;年级id&#x27;,</span><br><span class="line">    `gradename` VARCHAR(50) NOT NULL COMMENT &#x27;年级名称&#x27;,</span><br><span class="line">    PRIMARY KEY(`gradeid`)</span><br><span class="line">)ENGINE=INNODB DEFAULT CHARSET=utf8</span><br><span class="line"></span><br><span class="line">CREATE TABLE IF NOT EXISTS `student`(</span><br><span class="line">    `id` INT(4) NOT NULL AUTO_INCREMENT COMMENT &#x27;学号&#x27;,</span><br><span class="line">    `name` VARCHAR(20) NOT NULL DEFAULT &#x27;匿名&#x27; COMMENT &#x27;姓名&#x27;,</span><br><span class="line">    `pwd` VARCHAR(20) NOT NULL DEFAULT &#x27;123456&#x27; COMMENT &#x27;密码&#x27;,</span><br><span class="line">    `sex` VARCHAR(2) NOT NULL DEFAULT &#x27;男&#x27; COMMENT &#x27;性别&#x27;,</span><br><span class="line">    `gradeid` INT(10) NOT NULL COMMENT &#x27;年级&#x27;,</span><br><span class="line">    `birthday` DATETIME DEFAULT NULL COMMENT &#x27;生日&#x27;,</span><br><span class="line">    `address` VARCHAR(20) DEFAULT NULL COMMENT &#x27;地址&#x27;,</span><br><span class="line">    `email` VARCHAR(20) DEFAULT NULL COMMENT &#x27;邮箱&#x27;,</span><br><span class="line">    PRIMARY KEY(`id`)</span><br><span class="line">)ENGINE=INNODB DEFAULT CHARSET=utf8</span><br><span class="line"></span><br><span class="line">-- 创建表的时候没有外键关系</span><br><span class="line">ALTER TABLE `student`</span><br><span class="line">ADD CONSTRAINT `FK_gradeid` FOREIGN KEY (`gradeid`) REFERENCES `grade`(`gradeid`);</span><br><span class="line"></span><br><span class="line">-- ALTER TABLE 表 ADD CONSTRAINT 约束名 FOREIGN KEY（作为外键的列） REFERENCES 那个表（那个字段）</span><br></pre></td></tr></table></figure>
+
+<p>以上操作都是物理外键，数据库级别的外键，不建议使用！（避免数据库过多造成困扰）</p>
+<p>==最佳实践==</p>
+<ul>
+<li>数据库就是单纯的表，只用来存数据，只有行（数据）和列（字段）</li>
+<li>我们想使用多张表的数据，想使用外键（程序去实现）</li>
+</ul>
+<h2 id="DML语言（全部记住）"><a href="#DML语言（全部记住）" class="headerlink" title="DML语言（全部记住）"></a>DML语言（全部记住）</h2><p>数据库意义：数据存储，数据管理</p>
+<p>DML语言：数据操作语言</p>
+<ul>
+<li>insert</li>
+<li>update</li>
+<li>delete</li>
+</ul>
+<h3 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 插入语句一定要数据和字段一一对应：insert into 表名（[字段1，字段2，...]）values(&#x27;值1&#x27;，&#x27;值2&#x27;，...)</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> `student`（id,name,age）<span class="keyword">values</span>(<span class="number">1</span>,<span class="string">&#x27;zhangsan&#x27;</span>,<span class="number">12</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 插入多个字段</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `grade`(`gradename`)</span><br><span class="line"><span class="keyword">VALUES</span>(<span class="string">&#x27;大一&#x27;</span>),(<span class="string">&#x27;大二&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>注意事项：</p>
+<ul>
+<li>字段和字段之间使用 英文逗号 隔开</li>
+<li>字段可以省略，但是后面的值必须要一一对应，不能少</li>
+<li>可以同时插入多条数据，VALUES后面的值，需要使用,隔开即可 (),()</li>
+</ul>
+<h3 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- 不指定条件的情况下，会修改所有的记录：update 表名 set column_name=value,[column_name=value,...] where [条件]</span><br><span class="line">update `student` set name=&#x27;张三&#x27; where id=1</span><br><span class="line"></span><br><span class="line">UPDATE student SET NAME = &#x27;行初雾&#x27;,email = &#x27;1092315259@qq.com&#x27; WHERE id = 1</span><br></pre></td></tr></table></figure>
+
+<p>条件：where子句</p>
+<p>操作符：</p>
+<ul>
+<li> =、&lt;&gt;或!=、&lt;、&gt;、&lt;=、&gt;=、BETWEEN…and… 、AND、OR</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UPDATE `student` set `name` = &#x27;hello&#x27; WHERE `name` = &#x27;1&#x27; AND sex = &#x27;女&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>语法：update 表名 set column_name=value,[column_name=value,…] where [条件]</p>
+<p>注意：</p>
+<ul>
+<li>colnum_name 是数据库的列，尽量带上``</li>
+<li>条件，筛选的条件，如果没有指定，则会修改所有的列</li>
+<li>value，是一个具体的值，也可以是一个变量</li>
+<li>多个设置的属性之间，使用英文逗号隔开</li>
+</ul>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><p>delete命令：</p>
+<ul>
+<li><p>语法：delete from 表名 [where 条件]</p>
+</li>
+<li><p>```<br>– 不指定条件的情况下，会删除所有的记录：delete from 表名<br>delete from <code>student</code> where id=1;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">TRUNCATE命令：</span><br><span class="line"></span><br><span class="line">- 作用：完全清空一个数据库表，表的结构和索引约束不会变</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><ul>
+<li>清空整张表<br>truncate table <code>student</code>;<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">delete 与 TRUNCATE 区别：</span><br><span class="line"></span><br><span class="line">相同点：都能删除 数据，都不会删除表结构</span><br><span class="line"></span><br><span class="line">不同点：</span><br><span class="line"></span><br><span class="line">- TRUNCATE 重新设置 自增列 计数器会归零</span><br><span class="line">- TRUNCATE 不会影响事务</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><ul>
+<li>测试delete与TRUNCATE区别<br>CREATE TABLE test(<br> <code>id</code> INT(4) NOT NULL AUTO_INCREMENT,<br> <code>coll</code> VARCHAR(20) NOT NULL,<br> PRIMARY KEY(<code>id</code>)<br>)ENGINE=INNODB DEFAULT CHARSET=utf8mb4</li>
+</ul>
+</li>
+</ul>
+<p>INSERT INTO <code>test</code>(<code>coll</code>) VALUES(‘1’),(‘2’),(‘3’)</p>
+<p>DELETE FROM <code>test</code>    – 不会影响自增</p>
+<p>TRUNCATE TABLE <code>test</code>    – 自增会归零</p>
+<pre><code>
+delete删除问题（了解即可）：重启数据库，现象
+
+- InnoDB    自增列会重1开始，（存在内存当中，断电即失）
+- MyISAM    继续从上一个自增量开始（存在文件中，不会丢失）
+
+## DQL查询数据（最重点）
+</code></pre>
+
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5>本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "https://xingchuwu.github.io/2022/01/14/mysql/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "https://xingchuwu.github.io/2022/01/14/mysql/";
+            const title         = "「mysql」";
+            const excerpt       = `初始Mysqlhttps://www.kuangstudy.com/bbs/1467760102697095170#header2
+什么是数据库概念：​    数据仓库（软件），安装在操作系统（window，Linux，mac…）之上...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    
+                </div>
+                <div class="pull-date">
+                <span>最后编辑：2022-01-14</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" java基础语法" href="/2022/01/14/java基础语法/">&lt; 上一篇</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" 数据结构与算法" href="/2022/01/14/数据结构和算法/">下一篇 &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar1.webp" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+
+            
+                
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2022/01/14/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"><i class="fa  fa-book"></i> 网络编程</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/01/14/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/"><i class="fa  fa-book"></i> 数据结构与算法</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/01/14/mysql/"><i class="fa  fa-book"></i> mysql</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/01/14/java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/"><i class="fa  fa-book"></i> java基础语法</a>
+            
+          
+        
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://t.me/CandyUnion"><i class="fa fa-telegram"></i></a></li>
+                        
+                        
+                        
+                        <li><a target="_blank" rel="me" href="https://nya.one/@Candinya"><i class="fa fa fa-share-alt-square"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/Candinya"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2022 行初雾 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by 行初雾.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="https://unpkg.com/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+    <script defer src="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="https://unpkg.com/meting@2/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="3204190542"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="https://unpkg.com/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+    <script defer src="/js/kr-dark.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>
